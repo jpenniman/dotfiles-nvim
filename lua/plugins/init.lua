@@ -78,7 +78,7 @@ return {
         "css-lsp",
         "eslint-lsp",
         "typescript-language-server",
-        -- "csharpier",
+        "csharpier",
         "prettier",
         "json-lsp"
       },
