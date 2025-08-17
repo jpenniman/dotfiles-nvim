@@ -1,8 +1,14 @@
 local function setup(map, opts)
   map("n", "gm", require("fzf-lua").marks, opts)
 
+  -- show all diagnostics
   map("n", "<leader>da", require("fzf-lua").diagnostics_workspace, opts)
-  map("n", "<leader>ds", require("fzf-lua").diagnostics_document, opts)
+
+  -- show only errors
+  map("n", "<leader>ds", function()
+    require("fzf-lua").diagnostics_workspace({
+      severity_only = 1 })
+  end, opts)
 
   -- default bindings if you want to use an LSP different to omnisharp
   map("n", "gr", require("fzf-lua").lsp_references, opts)
@@ -22,6 +28,5 @@ local function setup(map, opts)
   map("n", "<leader>ca", require("fzf-lua").lsp_code_actions, opts)
   map("n", "<leader>?", require("fzf-lua").builtin, opts)
 end
-
 
 return setup
