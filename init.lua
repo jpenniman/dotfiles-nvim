@@ -167,6 +167,14 @@ require("tiny-inline-diagnostic").setup({
   -- ...
 })
 
+do
+  local sev      = vim.diagnostic.severity
+  sev[sev.ERROR] = sev[sev.ERROR] or "ERROR"
+  sev[sev.WARN]  = sev[sev.WARN] or "WARN"
+  sev[sev.INFO]  = sev[sev.INFO] or "INFO"
+  sev[sev.HINT]  = sev[sev.HINT] or "HINT"
+end
+
 require("fzf-lua").setup({
   -- preview window is in fullscreen and takes 70% of the space and is above the search results
   winopts = {
@@ -191,6 +199,44 @@ require("fzf-lua").setup({
       ["ctrl-q"] = "select-all+accept",
     },
   },
+
+  -- diagnostics = {
+  --   format = function(d)
+  --     local sev_labels = { [1] = "Error", [2] = "Warning", [3] = "Info", [4] = "Hint" }
+  --     local label = sev_labels[d.severity] or "Unknown"
+  --     return string.format(" [%s] %s:%d:%d: %s",
+  --       label, d.filename or "?", d.lnum or 0, d.col or 0, d.message or "")
+  --   end,
+  -- },
+  -- diagnostics = {
+  --   -- custom line formatter for diagnostics_* pickers
+  --   format = function(d)
+  --     -- numeric -> "ERROR"/"WARN"/"INFO"/"HINT"
+  --     local sev_key    = vim.diagnostic.severity[d.severity] or "UNKNOWN"
+  --     -- prettify
+  --     local sev_pretty = ({
+  --       ERROR = "Error",
+  --       WARN  = "Warning",
+  --       INFO  = "Info",
+  --       HINT  = "Hint",
+  --     })[sev_key] or sev_key
+  --
+  --     -- 0-based -> 1-based
+  --     local lnum       = (d.lnum or 0) + 1
+  --     local col        = (d.col or 0) + 1
+  --
+  --     -- include code if present (e.g. CS1998)
+  --     local code       = d.code or (d.user_data and d.user_data.lsp and d.user_data.lsp.code) or ""
+  --
+  --     if code ~= "" then
+  --       return string.format(" [%s] %s:%d:%d (%s): %s",
+  --         sev_pretty, d.filename or "?", lnum, col, code, d.message or "")
+  --     else
+  --       return string.format(" [%s] %s:%d:%d: %s",
+  --         sev_pretty, d.filename or "?", lnum, col, d.message or "")
+  --     end
+  --   end,
+  -- },
 })
 -- use `fzf-lua` for replace vim.ui.select
 require("fzf-lua").register_ui_select()

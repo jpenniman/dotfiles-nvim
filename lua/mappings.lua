@@ -7,7 +7,8 @@ local opts = { noremap = true, silent = true }
 
 -- require("mappings_telescope")(map, opts)
 require("mappings_fzflua")(map, opts)
-require("mappings_omnisharp_extended")(map, opts)
+-- require("mappings_omnisharp_extended")(map, opts)
+require("mappings_lsp")(map, opts)
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
@@ -33,19 +34,6 @@ end
 
 map("n", "<leader>aa", ":lua HighlightCSharpMethod()<CR>", { noremap = true, silent = true })
 map('v', '<leader>as', ':Gen Summarize_Function<CR>')
-map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
-
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-map("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-map("n", "<leader>ra", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-
-map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-map("v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- quickfix window
 -- map("n", "<leader>qo", "<cmd>copen<CR>", opts)

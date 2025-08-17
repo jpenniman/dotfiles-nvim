@@ -85,15 +85,29 @@ end
 --   filetypes = { "cs" }
 -- })
 
--- omnisharp languageserver
-local pid = vim.fn.getpid()
 
-lspconfig.omnisharp.setup({
-  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
+vim.lsp.config("roslyn", {
   on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+  settings = {
+    ["csharp|inlay_hints"] = {
+      csharp_enable_inlay_hints_for_implicit_object_creation = true,
+      csharp_enable_inlay_hints_for_implicit_variable_types = true,
+    },
+    ["csharp|code_lens"] = {
+      dotnet_enable_references_code_lens = true,
+    },
+  },
 })
+
+-- omnisharp languageserver
+-- local pid = vim.fn.getpid()
+
+-- lspconfig.omnisharp.setup({
+--   cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
+--   on_attach = on_attach,
+--   on_init = on_init,
+--   capabilities = capabilities,
+-- })
 
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,

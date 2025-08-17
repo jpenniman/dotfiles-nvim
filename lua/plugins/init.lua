@@ -1,5 +1,14 @@
 return {
   {
+    "seblyng/roslyn.nvim",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
+    lazy = false
+  },
+  {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -47,16 +56,20 @@ return {
   --     },
   --   },
   -- },
-  {
-    "Hoffs/omnisharp-extended-lsp.nvim"
-  },
+  -- {
+  --   "Hoffs/omnisharp-extended-lsp.nvim"
+  -- },
   {
     "williamboman/mason.nvim",
     opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
       ensure_installed = {
         "lua-language-server",
-        "csharp-language-server",
-        "omnisharp",
+        -- "csharp-language-server",
+        -- "omnisharp",
         "rust-analyzer",
         "xmlformatter",
         "stylua",
@@ -65,7 +78,7 @@ return {
         "css-lsp",
         "eslint-lsp",
         "typescript-language-server",
-        "csharpier",
+        -- "csharpier",
         "prettier",
         "json-lsp"
       },
