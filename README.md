@@ -2,4 +2,6 @@
 
 This is my neovim config. It is based on [NvChad](https://nvchad.com/) with the aim to ease dotnet development. It will evolve over time along with what I learn in the realm of neovim and dotnet.
 
-test: this should now affect the dotfiles-nvim repo
+```
+git clone https://git.ramboe.io/configuration/dotfiles-nvim.git $HOME/.config/nvim
+```
