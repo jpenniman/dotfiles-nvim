@@ -48,7 +48,7 @@ lspconfig.dockerls.setup({
 
 -- Create a wrapper on_attach for csharp_ls
 
-vim.lsp.config("roslyn", {}) -- with this everything just works so far
+vim.lsp.config("roslyn", {})
 
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
