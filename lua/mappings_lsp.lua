@@ -11,9 +11,7 @@ local function setup(map, opts)
   map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   map("v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
-  -- map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  -- map("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  map("n", "<F12>", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  map("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 end
 
 return setup

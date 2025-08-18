@@ -2,12 +2,6 @@
 
 -- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-
-
-
-
-
-
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
@@ -22,14 +16,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-
--- lspconfig.ansiblels.setup({
---   on_attach = on_attach,
---   on_init = on_init,
---   capabilities = capabilities
--- })
-
 
 vim.cmd([[ autocmd BufNewFile,BufRead *.bicep set filetype=bicep ]])
 
@@ -75,6 +61,7 @@ local function csharp_on_attach(client, bufnr)
   -- still call the default on_attach
   on_attach(client, bufnr)
 end
+
 -- !! special workaround for csharpier - END
 
 -- lspconfig.csharp_ls.setup({
@@ -85,18 +72,36 @@ end
 --   filetypes = { "cs" }
 -- })
 
+-- local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
+-- Use one of the methods in the Integration section to compose the command.
+
+-- local cmd = {
+--   "roslyn",
+--   "--stdio",
+--   "--logLevel=Information",
+--   "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+--   "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+--   "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+--   "--extension",
+--   vim.fs.joinpath(rzls_path, "RazorExtension", "Microsoft.VisualStudioCode.RazorExtension.dll"),
+-- }
 
 vim.lsp.config("roslyn", {
   on_attach = on_attach,
-  settings = {
-    ["csharp|inlay_hints"] = {
-      csharp_enable_inlay_hints_for_implicit_object_creation = true,
-      csharp_enable_inlay_hints_for_implicit_variable_types = true,
-    },
-    ["csharp|code_lens"] = {
-      dotnet_enable_references_code_lens = true,
-    },
-  },
+  -- cmd = cmd,
+  config = {
+    -- the rest of your Roslyn configuration
+    -- handlers = require("rzls.roslyn_handlers"),
+  }
+  -- settings = {
+  --   ["csharp|inlay_hints"] = {
+  --     csharp_enable_inlay_hints_for_implicit_object_creation = true,
+  --     csharp_enable_inlay_hints_for_implicit_variable_types = true,
+  --   },
+  --   ["csharp|code_lens"] = {
+  --     dotnet_enable_references_code_lens = true,
+  --   },
+  -- },
 })
 
 -- omnisharp languageserver
@@ -159,7 +164,3 @@ vim.diagnostic.config(
     }
   }
 )
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
-})
