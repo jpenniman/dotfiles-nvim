@@ -50,15 +50,6 @@ lspconfig.dockerls.setup({
 
 vim.lsp.config("roslyn", {}) -- with this everything just works so far
 
--- vim.lsp.config("roslyn", {
---   -- on_attach = on_attach,
---   -- on_init = on_init,
---   -- capabilities = capabilities, -- !!! this will hinder 'go to definition' of imported libraries
---   config = {
---     -- the rest of your Roslyn configuration
---   }
--- })
-
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
   -- on_init = on_init,
