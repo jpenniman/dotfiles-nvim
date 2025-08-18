@@ -7,14 +7,14 @@ return {
     opts = {
       -- your configuration comes here; leave empty for default settings
     },
-    -- dependencies = {
-    --   {
-    --     -- By loading as a dependencies, we ensure that we are available to set
-    --     -- the handlers for Roslyn.
-    --     "tris203/rzls.nvim",
-    --     config = true,
-    --   },
-    -- },
+    dependencies = {
+      {
+        -- By loading as a dependencies, we ensure that we are available to set
+        -- the handlers for Roslyn.
+        "tris203/rzls.nvim",
+        config = true,
+      },
+    },
     -- config = function()
     --   vim.lsp.config("roslyn", {
     --     cmd = cmd,
@@ -87,23 +87,6 @@ return {
       vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
     end
   },
-  -- {
-  --   "TomDeneire/lsp-in-gutter.nvim",
-  --   config = true
-  -- },
-
-  -- https://github.com/NvChad/NvChad/discussions/2193
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = {
-  --     completion = {
-  --       autocomplete = false,
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "Hoffs/omnisharp-extended-lsp.nvim"
-  -- },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -125,7 +108,9 @@ return {
         "typescript-language-server",
         "csharpier",
         "prettier",
-        "json-lsp"
+        "json-lsp",
+        "roslyn",
+        "rzls",
       },
     },
   },
@@ -133,7 +118,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      -- ensure_installed = "all"
       ensure_installed = {
         "hyprlang",
         "vim",
@@ -147,7 +131,6 @@ return {
       },
     },
   },
-  -- {"akinsho/bufferline.nvim"},
   {
     "numToStr/Comment.nvim",
     lazy = false,
@@ -276,8 +259,4 @@ return {
     }
   },
   { "smithbm2316/centerpad.nvim" }
-  -- {
-  --   "m4xshen/smartcolumn.nvim",
-  --   opts = {}
-  -- }
 }

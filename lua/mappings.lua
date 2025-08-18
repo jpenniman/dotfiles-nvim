@@ -7,7 +7,6 @@ local opts = { noremap = true, silent = true }
 
 -- require("mappings_telescope")(map, opts)
 require("mappings_fzflua")(map, opts)
--- require("mappings_omnisharp_extended")(map, opts)
 require("mappings_lsp")(map, opts)
 
 map("n", ";", ":", { desc = "CMD enter command mode" })

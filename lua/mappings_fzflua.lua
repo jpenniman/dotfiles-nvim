@@ -10,7 +10,6 @@ local function setup(map, opts)
       severity_only = 1 })
   end, opts)
 
-  -- default bindings if you want to use an LSP different to omnisharp
   map("n", "gr", require("fzf-lua").lsp_references, opts)
   map("n", "gR", require("fzf-lua").lsp_references, opts)
   map("n", "<leader>fs", require("fzf-lua").lsp_document_symbols, opts)
