@@ -219,5 +219,9 @@ require("fzf-lua").setup({
 -- use `fzf-lua` for replace vim.ui.select
 require("fzf-lua").register_ui_select()
 
+-- enable treesitter for razor files
+vim.filetype.add { extension = { razor = "razor" } }
+vim.treesitter.language.register("html", "razor") -- use HTML TS for `:set ft=razor`
+
 vim.g.dotnet_errors_only = true
 vim.g.dotnet_show_project_file = false

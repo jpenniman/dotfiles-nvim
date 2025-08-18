@@ -97,7 +97,8 @@ return {
         "html",
         "css",
         "c_sharp",
-        "bicep"
+        "bicep",
+        "razor"
       },
     },
   },
