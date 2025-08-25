@@ -1,17 +1,15 @@
 local dap = require("dap")
-local dotnet = require("configs.nvim-dap-dotnet")
 
-dap.adapters.coreclr = {
+local mason_path = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg"
+
+local netcoredbg_adapter = {
   type = "executable",
-  command = "/home/ramboe/Documents/debuggers/netcoredbg/netcoredbg",
+  command = mason_path,
   args = { "--interpreter=vscode" },
 }
 
-dap.adapters.netcoredbg = {
-  type = "executable",
-  command = "/home/ramboe/Documents/debuggers/netcoredbg/netcoredbg",
-  args = { "--interpreter=vscode" },
-}
+dap.adapters.netcoredbg = netcoredbg_adapter -- needed for normal debugging
+dap.adapters.coreclr = netcoredbg_adapter    -- needed for unit test debugging
 
 dap.configurations.cs = {
   {
@@ -19,7 +17,7 @@ dap.configurations.cs = {
     name = "launch - netcoredbg",
     request = "launch",
     program = function()
-      return dotnet.build_dll_path()
+      return require("dap-dll-autopicker").build_dll_path()
     end
 
     -- justMyCode = false,

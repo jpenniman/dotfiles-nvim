@@ -1,5 +1,9 @@
 return {
   {
+    'ramboe/ramboe-dotnet-utils',
+    dependencies = { 'mfussenegger/nvim-dap' }
+  },
+  {
     "seblyng/roslyn.nvim",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
@@ -126,6 +130,7 @@ return {
         "json-lsp",
         "roslyn",
         "rzls",
+        "netcoredbg"
       },
     },
   },
