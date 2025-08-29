@@ -19,27 +19,6 @@ dap.configurations.cs = {
     program = function()
       return require("dap-dll-autopicker").build_dll_path()
     end
-
-    -- justMyCode = false,
-    -- stopAtEntry = false,
-    -- -- program = function()
-    -- --   -- todo: request input from ui
-    -- --   return "/path/to/your.dll"
-    -- -- end,
-    -- env = {
-    --   ASPNETCORE_ENVIRONMENT = function()
-    --     -- todo: request input from ui
-    --     return "Development"
-    --   end,
-    --   ASPNETCORE_URLS = function()
-    --     -- todo: request input from ui
-    --     return "http://localhost:5050"
-    --   end,
-    -- },
-    -- cwd = function()
-    --   -- todo: request input from ui
-    --   return vim.fn.getcwd()
-    -- end,
   },
 }
 
@@ -59,37 +38,35 @@ map("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", opts)
 map("n", "<leader>dt", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>",
   { noremap = true, silent = true, desc = 'debug nearest test' })
 
-local dapui = require("dapui")
--- local dapui = require("dapui").
-
-dapui.setup({
-  -- icons = { expanded = "▾", collapsed = "▸", current_frame = "▶" }, -- tweak or remove if you want
-  expand_lines = true,
-  controls = { enabled = false }, -- no extra play/step buttons
-  floating = { border = "rounded" },
-  render = {
-    max_type_length = 60,
-    max_value_lines = 200,
-  },
-  -- Only one layout: just the "scopes" (variables) list at the bottom
-  layouts = {
-    {
-      elements = {
-        { id = "scopes", size = 1.0 }, -- 100% of this panel is scopes
-      },
-      size = 20,                       -- height in lines (adjust to taste)
-      position = "bottom",             -- "left", "right", "top", "bottom"
-    },
-  },
-})
-
--- Auto open/close UI with sessions
-dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
--- dap.listeners.after.event_initialized["dapui_config"] = function() dapui.float_element("scopes", {}) end
-
-dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-dap.listeners.before.event_exited["dapui_config"]     = function() dapui.close() end
-
--- Optional: a simple toggle key if you want manual control sometimes
-vim.keymap.set("n", "<leader>du", function() dapui.toggle() end,
-  { noremap = true, silent = true, desc = "Toggle DAP UI" })
+-- local dapui = require("dapui")
+--
+-- dapui.setup({
+--   expand_lines = true,
+--   controls = { enabled = false }, -- no extra play/step buttons
+--   floating = { border = "rounded" },
+--   render = {
+--     max_type_length = 60,
+--     max_value_lines = 200,
+--   },
+--   -- Only one layout: just the "scopes" (variables) list at the bottom
+--   layouts = {
+--     {
+--       elements = {
+--         { id = "scopes", size = 1.0 }, -- 100% of this panel is scopes
+--       },
+--       size = 20,                       -- height in lines (adjust to taste)
+--       position = "bottom",             -- "left", "right", "top", "bottom"
+--     },
+--   },
+-- })
+--
+-- -- Auto open/close UI with sessions
+-- dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+-- -- dap.listeners.after.event_initialized["dapui_config"] = function() dapui.float_element("scopes", {}) end
+--
+-- dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+-- dap.listeners.before.event_exited["dapui_config"]     = function() dapui.close() end
+--
+-- -- Optional: a simple toggle key if you want manual control sometimes
+-- vim.keymap.set("n", "<leader>du", function() dapui.toggle() end,
+--   { noremap = true, silent = true, desc = "Toggle DAP UI" })
