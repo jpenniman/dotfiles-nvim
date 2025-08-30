@@ -57,5 +57,15 @@ dapui.setup({
 })
 
 -- Optional: a simple toggle key if you want manual control sometimes
-vim.keymap.set("n", "<leader>du", function() dapui.toggle() end,
-  { noremap = true, silent = true, desc = "Toggle DAP UI" })
+-- vim.keymap.set("n", "<leader>du", function() dapui.toggle() end,
+--   { noremap = true, silent = true, desc = "Toggle DAP UI" })
+
+local map, opts = vim.keymap.set, { noremap = true, silent = true }
+
+map("n", "<leader>du", function() dapui.toggle() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+
+-- Add word under cursor to Watches
+map({ "n", "v" }, "<leader>dw", function() require("dapui").eval(nil, { enter = true }) end, opts)
+
+-- Hover/eval a single value (opens a tiny window instead of expanding the full object)
+map({ "n", "v" }, "Q", function() require("dapui").eval() end, opts)
