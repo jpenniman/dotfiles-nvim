@@ -56,10 +56,6 @@ dapui.setup({
   },
 })
 
--- Optional: a simple toggle key if you want manual control sometimes
--- vim.keymap.set("n", "<leader>du", function() dapui.toggle() end,
---   { noremap = true, silent = true, desc = "Toggle DAP UI" })
-
 local map, opts = vim.keymap.set, { noremap = true, silent = true }
 
 map("n", "<leader>du", function() dapui.toggle() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
