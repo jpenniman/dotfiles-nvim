@@ -66,6 +66,8 @@ map({ "n", "v" }, "<leader>dw", function() require("dapui").eval(nil, { enter = 
 -- Hover/eval a single value (opens a tiny window instead of expanding the full object)
 map({ "n", "v" }, "Q", function() require("dapui").eval() end, opts)
 
+
+-- EXPERIMENTAL AREA
 -- Expand all nodes in the *currently focused* scopes buffer (nvim-dap or nvim-dap-ui)
 local function _feed(key)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), 'm', false) -- allow mappings
