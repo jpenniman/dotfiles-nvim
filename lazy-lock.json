@@ -37,7 +37,7 @@
   "oil.nvim": { "branch": "master", "commit": "07f80ad645895af849a597d1cac897059d89b686" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "ramboe-dotnet-utils": { "branch": "main", "commit": "a01c216b7c9770510f75831b3cf07de2c252e0b8" },
-  "roslyn.nvim": { "branch": "main", "commit": "4cd2687713c66fd2d507c04c7ad82a94bc96d8cc" },
+  "roslyn.nvim": { "branch": "main", "commit": "4b8a3dd35ce3f08f8126564a9067b5c913efbebd" },
   "rzls.nvim": { "branch": "main", "commit": "1798c64830547d711b14dc2f3f47da15584d8aab" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "f64efd33a51ea89bdb847fb3aaf716e96b83ba1a" },
