@@ -152,11 +152,21 @@ end
 -- :DapUIWalk <target>  (passes a block list through)
 vim.api.nvim_create_user_command("DapUIWalk", function(opts)
   M.DapUI_WalkExpandUntilAsync(opts.args, {
-    interval = 150,
-    block = { "Static", " _" }, -- your block strings
+    interval = 500,
+    block = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
     -- block_insensitive = true,  -- (optional) case-insensitivity for block
     -- insensitive = true,        -- (optional) case-insensitivity for target
   })
 end, { nargs = 1 })
+
+--- I think we don't need this
+function M.DapUI_ResetPanels(delay_ms)
+  delay_ms = delay_ms or 40
+  local dapui = require("dapui")
+  dapui.close()
+  vim.defer_fn(function()
+    dapui.open()
+  end, delay_ms)
+end
 
 return M
