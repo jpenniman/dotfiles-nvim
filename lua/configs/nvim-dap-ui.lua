@@ -67,14 +67,12 @@ map({ "n", "v" }, "<leader>dw", function() require("dapui").eval(nil, { enter = 
 -- Hover/eval a single value (opens a tiny window instead of expanding the full object)
 map({ "n", "v" }, "Q", function() require("dapui").eval() end, opts)
 
-
--- EXPERIMENTAL AREA
--- EXPERIMENTAL AREA
--- EXPERIMENTAL AREA
--- EXPERIMENTAL AREA
-
-  local icons = require("dapui.config").icons or {}
-  local icon = icons.collapsed or ""
-  vim.notify("icons.collapsed: " .. icons.collapsed, vim.log.levels.INFO)
-
-require("custom-plugins.nvim-dap-ui-walker")
+require("custom-plugins.nvim-dap-ui-walker").setup({
+  interval          = 300,
+  block             = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
+  block_insensitive = true,                                                    -- block matching case-insensitive
+  insensitive       = true,                                                    -- target matching case-insensitive
+  start_at_top      = true,
+  center            = true,
+  exact             = true,
+});

@@ -1,5 +1,40 @@
 local M = {}
 
+-- Defaults (edit these)
+M._cfg = {
+  interval          = 500,
+  block             = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
+  block_insensitive = true,                                                    -- block matching case-insensitive
+  insensitive       = true,                                                    -- target matching case-insensitive
+  start_at_top      = true,
+  center            = true,
+  exact             = true,
+}
+
+-- Merge helper
+local function _merge(user)
+  if type(user) == "table" then
+    M._cfg = vim.tbl_deep_extend("force", M._cfg, user)
+  end
+end
+
+-- Public setup (call once from your config)
+function M.setup(opts)
+  _merge(opts)
+  -- (re)create the command using current defaults
+  pcall(vim.api.nvim_del_user_command, "RamboeWalk")
+  vim.api.nvim_create_user_command("RamboeWalk", function(o)
+    M.DapUI_WalkExpandUntilAsync(o.args, vim.deepcopy(M._cfg))
+  end, { nargs = 1 })
+end
+
+-- Optional sugar: allow require("module"){...}
+setmetatable(M, {
+  __call = function(_, opts)
+    M.setup(opts); return M
+  end
+})
+
 -- Expand all collapsed nodes in the *focused* nvim-dap-ui Scopes buffer.
 function M.DapUI_SendEnter()
   local cr = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
@@ -149,8 +184,8 @@ function M.DapUI_WalkExpandUntilAsync(target, opts)
   step()
 end
 
--- :DapUIWalk <target>  (passes a block list through)
-vim.api.nvim_create_user_command("DapUIWalk", function(opts)
+-- :RamboeWalk <target>  (passes a block list through)
+vim.api.nvim_create_user_command("RamboeWalk", function(opts)
   M.DapUI_WalkExpandUntilAsync(opts.args, {
     interval = 500,
     block = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
