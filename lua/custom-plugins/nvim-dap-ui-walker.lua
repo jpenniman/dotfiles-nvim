@@ -19,21 +19,22 @@ local function _merge(user)
 end
 
 -- Public setup (call once from your config)
+
+-- optional: let users override defaults once
 function M.setup(opts)
-  _merge(opts)
-  -- (re)create the command using current defaults
-  pcall(vim.api.nvim_del_user_command, "DapUIWalk")
-  vim.api.nvim_create_user_command("DapUIWalk", function(o)
-    M.DapUI_WalkExpandUntilAsync(o.args, vim.deepcopy(M._cfg))
-  end, { nargs = 1 })
+  if type(opts) == "table" then
+    M._cfg = vim.tbl_deep_extend("force", M._cfg, opts)
+  end
 end
 
--- Optional sugar: allow require("module"){...}
-setmetatable(M, {
-  __call = function(_, opts)
-    M.setup(opts); return M
-  end
-})
+-- function M.setup(opts)
+--   _merge(opts)
+--   -- (re)create the command using current defaults
+--   pcall(vim.api.nvim_del_user_command, "DapUIWalk")
+--   vim.api.nvim_create_user_command("DapUIWalk", function(o)
+--     M.DapUI_WalkExpandUntilAsync(o.args, vim.deepcopy(M._cfg))
+--   end, { nargs = 1 })
+-- end
 
 -- Expand all collapsed nodes in the *focused* nvim-dap-ui Scopes buffer.
 function M.DapUI_SendEnter()
@@ -184,15 +185,17 @@ function M.DapUI_WalkExpandUntilAsync(target, opts)
   step()
 end
 
--- :DapUIWalk <target>  (passes a block list through)
+-- command: just pass current cfg
 vim.api.nvim_create_user_command("DapUIWalk", function(opts)
-  M.DapUI_WalkExpandUntilAsync(opts.args, {
-    interval = 500,
-    block = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
-    -- block_insensitive = true,  -- (optional) case-insensitivity for block
-    -- insensitive = true,        -- (optional) case-insensitivity for target
-  })
+  M.DapUI_WalkExpandUntilAsync(opts.args, vim.deepcopy(M._cfg)) -- deepcopy is just defensive
 end, { nargs = 1 })
+
+-- (optional) sugar so you can do: require("..."){ ... }
+setmetatable(M, {
+  __call = function(_, opts)
+    M.setup(opts); return M
+  end
+})
 
 --- I think we don't need this
 function M.DapUI_ResetPanels(delay_ms)

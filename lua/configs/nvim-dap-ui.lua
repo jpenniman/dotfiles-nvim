@@ -68,7 +68,7 @@ map({ "n", "v" }, "<leader>dw", function() require("dapui").eval(nil, { enter = 
 map({ "n", "v" }, "Q", function() require("dapui").eval() end, opts)
 
 require("custom-plugins.nvim-dap-ui-walker").setup({
-  interval          = 300,
+  interval          = 250,
   block             = { "Static members", " _", ".Collections.", "DateTime" }, -- your block strings
   block_insensitive = true,                                                    -- block matching case-insensitive
   insensitive       = true,                                                    -- target matching case-insensitive
