@@ -217,3 +217,9 @@ function _G.DapUI_WalkExpandUntilAsync(target, opts)
 
   step()
 end
+
+-- Nice-to-haves --------------------------------------------------------------
+-- :DapUIWalk <target>
+vim.api.nvim_create_user_command("DapUIWalk", function(opts)
+  _G.DapUI_WalkExpandUntilAsync(opts.args, { interval = 100 })
+end, { nargs = 1 })
