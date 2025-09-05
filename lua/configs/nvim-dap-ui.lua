@@ -75,4 +75,5 @@ require("custom-plugins.nvim-dap-ui-walker").setup({
   start_at_top      = true,
   center            = true,
   exact             = true,
+  highlight         = true
 });
