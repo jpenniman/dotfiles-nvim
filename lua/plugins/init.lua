@@ -279,5 +279,5 @@ return {
       "nvim-neotest/neotest"
     }
   },
-  { "smithbm2316/centerpad.nvim" }
+  { "smithbm2316/centerpad.nvim" },
 }

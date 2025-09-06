@@ -219,7 +219,7 @@ require("fzf-lua").setup({
 -- use `fzf-lua` for replace vim.ui.select
 require("fzf-lua").register_ui_select()
 
--- require('dap-cs').setup()
+require("dap-scope-walker").setup();
 
 -- enable treesitter for razor files
 vim.filetype.add { extension = { razor = "razor" } }
