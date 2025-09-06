@@ -162,48 +162,19 @@ function M.DapUI_WalkExpandUntilAsync(target, opts)
       found = hay:find(needle_raw, 1, true) ~= nil or norm(name):find(needle_norm, 1, true) ~= nil
     end
 
-    -- if found then
-    --   -- make sure we’re on the line
-    --   vim.api.nvim_set_current_win(win)
-    --   vim.api.nvim_win_set_cursor(win, { lnum, 0 })
-    --
-    --   if visual_on_hit then
-    --   vim.notify("HIGHLIGHTING: " .. target, vim.log.levels.INFO)
-    --     -- Visual-Line select the whole line
-    --     vim.cmd("normal! V")
-    --   end
-    --
-    --   -- if center_on_hit then
-    --   --   vim.cmd("normal! zz")
-    --   -- end
-    --   return
-    -- end
-
     if found then
-      -- jump to the line
+      -- make sure we’re on the line
       vim.api.nvim_set_current_win(win)
       vim.api.nvim_win_set_cursor(win, { lnum, 0 })
 
-      -- run in the scopes window context, on the next tick
-      vim.schedule(function()
-        if not vim.api.nvim_win_is_valid(win) then return end
-        vim.notify("FOUND TARGET: " .. target, vim.log.levels.INFO)
+      if visual_on_hit then
+        -- Visual-Line select the whole line
+        vim.cmd("normal! V")
+      end
 
-        vim.api.nvim_win_call(win, function()
-          if visual_on_hit then
-            local V = vim.api.nvim_replace_termcodes("V", true, false, true)
-            -- send a *typed* Visual-Line toggle; no remap
-            -- vim.api.nvim_feedkeys(V, "n", false)
-            vim.cmd("normal! V")
-          end
-          if center_on_hit then
-            local ZZ = vim.api.nvim_replace_termcodes("zz", true, false, true)
-            -- vim.api.nvim_feedkeys(ZZ, "n", false)
-            vim.cmd("normal! zz")
-          end
-        end)
-      end)
-
+      if center_on_hit then
+        vim.cmd("normal! zz")
+      end
       return
     end
 
