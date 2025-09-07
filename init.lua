@@ -29,59 +29,11 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
-require('telescope').setup {
-  defaults = {
-    layout_config = {
-      vertical = { width = 0.8 },
-      horizontal = { width = 0.8 }
-      -- other layout configuration here
-    },
-    -- other defaults configuration here
-  },
-  pickers = {
-    live_grep = {
-      theme = "dropdown",
-    },
-    find_files = {
-      -- doesn't work, still get garbage results
-      additional_args = function()
-        return { "--fixed-strings" } -- disables regex & fuzzy, matches literally
-      end,
-      theme = "dropdown",
-    },
-    -- https://github.com/nvim-telescope/telescope.nvim/issues/3075
-    -- marks = {
-    --   attach_mappings = function(_, map)
-    --     map({ "i", "n" }, "<C-d>", require("telescope.actions").delete_mark)
-    --     return true
-    --   end,
-    -- },
-  },
-  extensions = {
-    -- ...
-  }
-}
-
--- require("nvim-tree").setup {
---   diagnostics = {
---     enable = true
---   },
---   view = {
---     -- side = 'right',
---     side = "left",
---     width = 45,
---   },
--- }
-
--- require("smartcolumn").setup()
-require("Comment").setup()
-
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
-
 
 vim.schedule(function()
   require "mappings"
@@ -89,141 +41,39 @@ vim.schedule(function()
 end)
 
 
--- override color of inactive relative line numbers
--- https://www.color-hex.com/color/d5c4a1
--- vim.cmd([[highlight LineNr guifg=#958970 gui=NONE]])
+-- require("custom-config.gen-nvim")
+-- require("custom-plugins.clemens-tree")
+-- require("custom-plugins.gen.init")
 
--- Function to get the RGB color of a highlight group
--- local function get_font_color(highlight_group)
---   local hl = vim.api.nvim_get_hl_by_name(highlight_group, true)
---   local fg = hl.fg or hl.foreground
---   if fg then
---     -- Convert from hex to RGB
---     return string.format("#%06x", fg)
---   else
---     return nil
---   end
--- end
-
--- Example usage to get the font color for 'Normal'
--- local font_color = get_font_color('Normal')
--- print("Font color for 'Normal': " .. font_color)
-
-
---[[ load custom plugins and configuration ]]
-
-require("custom-config.gen-nvim")
-require("custom-plugins.clemens-tree")
-
-require("custom-plugins.gen.init")
+--[[ load plugins with configuration ]]
 
 require("custom-config.oil-config")
 require("custom-config.folding")
 require("custom-config.scrolling")
-
--- load snippets from path/of/your/nvim/config/my-cool-snippets
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./lua/my-cool-snippets" } })
 require("custom-config.luasnip")
+require("custom-config.centerpad")
+require("custom-config.neotest")
+require("custom-config.tiny-inline-diagnostic")
+require("custom-config.fzf-lua")
 
---[[ misc config ]]
-
-vim.api.nvim_command('Oil')                                            -- Open Oil file tree on startup
-vim.api.nvim_command('autocmd FileType * setlocal formatoptions-=cro') -- prevent from proceeding with comment
-
-require("neotest").setup({
-  adapters = {
-    require("neotest-dotnet")
-  }
-})
-
--- Load the commit viewer module
-local commit_viewer = require('commit_viewer')
-
--- Create a command to show the commit in a floating window
-vim.api.nvim_create_user_command('ShowCommit', commit_viewer.show_commit, {})
-
--- using the command
-vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Centerpad<cr>', { silent = true, noremap = true })
-
--- or using the lua function
-vim.api.nvim_set_keymap('n', '<leader>z', "<cmd>lua require'centerpad'.toggle{ leftpad = 22, rightpad = 22 }<cr>",
-  { silent = true, noremap = true })
-
+require("Comment").setup()
 require("git-conflict")
-require("tiny-inline-diagnostic").setup({
-  -- ...
-  signs = {
-    left = "",
-    right = "",
-    diag = "●",
-    arrow = "    ",
-    up_arrow = "    ",
-    vertical = " │",
-    vertical_end = " └",
-  },
-  blend = {
-    factor = 0.22,
-  },
-  -- ...
-})
-
-do
-  local sev      = vim.diagnostic.severity
-  sev[sev.ERROR] = sev[sev.ERROR] or "ERROR"
-  sev[sev.WARN]  = sev[sev.WARN] or "WARN"
-  sev[sev.INFO]  = sev[sev.INFO] or "INFO"
-  sev[sev.HINT]  = sev[sev.HINT] or "HINT"
-end
-
-require("fzf-lua").setup({
-  -- preview window is in fullscreen and takes 70% of the space and is above the search results
-  winopts = {
-    fullscreen = true,
-    preview = {
-      layout = "vertical",
-      vertical = "up:70%",
-    },
-  },
-
-  -- use exact string matching, but only for the files picker
-  files = {
-    fzf_opts = {
-      ['--exact'] = '',
-      ['--no-sort'] = '',
-    }
-  },
-
-  -- use cltr-q to select all items and convert to quickfix list (as in telescope)
-  keymap = {
-    fzf = {
-      ["ctrl-q"] = "select-all+accept",
-    },
-  },
-
-  diagnostics = {
-    cwd_only       = false,
-    file_icons     = false,
-    git_icons      = false,
-    color_headings = true, -- use diag highlights to color source & filepath
-    diag_icons     = true, -- display icons from diag sign definitions
-    diag_source    = true, -- display diag source (e.g. [pycodestyle])
-    diag_code      = true, -- display diag code (e.g. [undefined])
-    icon_padding   = '',   -- add padding for wide diagnostics signs
-    multiline      = 2,    -- split heading and diag to separate lines
-    -- severity_only  = 1
-    -- severity_only:   keep any matching exact severity
-    -- severity_limit:  keep any equal or more severe (lower)
-    -- severity_bound:  keep any equal or less severe (higher)
-  }
-})
--- use `fzf-lua` for replace vim.ui.select
-require("fzf-lua").register_ui_select()
-
 require("dap-scope-walker").setup()
 
+-- wtf is this?
+-- do
+--   local sev      = vim.diagnostic.severity
+--   sev[sev.ERROR] = sev[sev.ERROR] or "ERROR"
+--   sev[sev.WARN]  = sev[sev.WARN] or "WARN"
+--   sev[sev.INFO]  = sev[sev.INFO] or "INFO"
+--   sev[sev.HINT]  = sev[sev.HINT] or "HINT"
+-- end
+
+
+
 -- enable treesitter for razor files
-vim.filetype.add { extension = { razor = "razor" } }
-vim.treesitter.language.register("html", "razor") -- use HTML TS for `:set ft=razor`
+-- vim.filetype.add { extension = { razor = "razor" } }
+-- vim.treesitter.language.register("html", "razor") -- use HTML TS for `:set ft=razor`
 
 vim.g.dotnet_errors_only = true
 vim.g.dotnet_show_project_file = false

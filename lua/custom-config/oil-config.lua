@@ -1,3 +1,4 @@
+
 local opts = {
   -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
   -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
@@ -181,5 +182,8 @@ local opts = {
 }
 
 require("oil").setup(opts)
+
+vim.api.nvim_command('Oil')                                            -- Open Oil file tree on startup
+vim.api.nvim_command('autocmd FileType * setlocal formatoptions-=cro') -- prevent from proceeding with comment
 
 return {}

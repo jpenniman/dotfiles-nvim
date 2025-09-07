@@ -1,4 +1,5 @@
 local ls = require("luasnip")
+
 -- some shorthands...
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -19,18 +20,6 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 
-
--- vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
--- vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
--- vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
---
--- vim.keymap.set({ "i", "s" }, "<C-E>", function()
---   if ls.choice_active() then
---     ls.change_choice(1)
---   end
--- end, { silent = true })
-
-
 --[[ csharp snippets ]]
 
 -- summay
@@ -43,6 +32,8 @@ ls.add_snippets("cs", {
     ]], { i(1) }
   ))
 })
+
+--[[ lua snippets ]]
 
 ls.add_snippets("lua", {
   s("hello", {
