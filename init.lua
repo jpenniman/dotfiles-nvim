@@ -46,10 +46,9 @@ require("custom-config.centerpad")
 require("custom-config.neotest")
 require("custom-config.tiny-inline-diagnostic")
 require("custom-config.fzf-lua")
+require("custom-config.ramboe-utils")
 
 require("Comment").setup()
 require("git-conflict")
 
 -- ramboe
-require("dap-scope-walker").setup()
-require("helpers")
