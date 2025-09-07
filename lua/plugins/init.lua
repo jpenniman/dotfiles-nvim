@@ -163,7 +163,6 @@ return {
       },
     },
   },
-
   {
     -- Debug Framework
     "mfussenegger/nvim-dap",
@@ -171,7 +170,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require "configs.nvim-dap"
+      require "custom-config.nvim-dap"
     end,
     event = "VeryLazy",
   },
@@ -183,7 +182,7 @@ return {
       "mfussenegger/nvim-dap",
     },
     config = function()
-      require "configs.nvim-dap-ui"
+      require "custom-config.nvim-dap-ui"
     end,
   },
   {
