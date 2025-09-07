@@ -10,8 +10,8 @@ local opts = { noremap = true, silent = true }
 -- require("custom-mappings.mappings_telescope")(map, opts)
 require("custom-mappings.mappings-fzflua")(map, opts)
 require("custom-mappings.mappings-lsp")(map, opts)
-require("custom-mappings.mappings-dap")(map, opts)
-require("custom-mappings.mappings-neotest")(map, opts)
+-- require("custom-mappings.mappings-dap")(map, opts)
+-- require("custom-mappings.mappings-neotest")(map, opts)
 require("custom-mappings.mappings-ramboe-utils")(map, opts)
 
 map("n", ";", ":", { desc = "CMD enter command mode" })

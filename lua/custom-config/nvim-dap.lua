@@ -22,4 +22,12 @@ dap.configurations.cs = {
   },
 }
 
+local map, opts = vim.keymap.set, { noremap = true, silent = true }
 
+map("n", "<F5>", function() dap.continue() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F8>", function() dap.step_out() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F9>", function() dap.toggle_breakpoint() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F10>", function() dap.step_over() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F11>", function() dap.step_into() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<leader>dr", function() dap.repl.open() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<leader>dl", function() dap.run_last() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })

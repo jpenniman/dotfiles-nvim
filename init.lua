@@ -41,7 +41,6 @@ end)
 
 require("custom-config.oil-config")
 require("custom-config.folding")
-require("custom-config.scrolling")
 require("custom-config.luasnip")
 require("custom-config.centerpad")
 require("custom-config.neotest")

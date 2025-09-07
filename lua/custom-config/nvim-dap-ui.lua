@@ -68,3 +68,12 @@ map({ "n", "v" }, "Q", function() require("dapui").eval() end,
     desc =
     "Hover/eval a single value (opens a tiny window instead of expanding the full object) "
   })
+
+
+
+local neotest = require("neotest")
+
+map("n", "<leader>dt", function() neotest.run.run({ strategy = 'dap' }) end,
+  { noremap = true, silent = true, desc = "debug nearest test" })
+map("n", "<F6>", function() neotest.run.run({ strategy = 'dap' }) end,
+  { noremap = true, silent = true, desc = "debug nearest test" })

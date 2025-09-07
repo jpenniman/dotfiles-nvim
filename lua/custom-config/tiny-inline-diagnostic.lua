@@ -1,4 +1,4 @@
-require("tiny-inline-diagnostic").setup({
+local opt = {
   -- ...
   signs = {
     left = "",
@@ -13,4 +13,6 @@ require("tiny-inline-diagnostic").setup({
     factor = 0.22,
   },
   -- ...
-})
+}
+
+require("tiny-inline-diagnostic").setup(opt)

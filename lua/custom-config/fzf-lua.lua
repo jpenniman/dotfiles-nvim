@@ -41,3 +41,34 @@ require("fzf-lua").setup({
 })
 -- use `fzf-lua` for replace vim.ui.select
 require("fzf-lua").register_ui_select()
+
+-- local opts = { noremap = true, silent = true }
+-- local map = vim.keymap.set
+--
+-- map("n", "gm", require("fzf-lua").marks, opts)
+--
+-- -- show all diagnostics
+-- map("n", "<leader>da", require("fzf-lua").diagnostics_workspace, opts)
+--
+-- -- show only errors
+-- map("n", "<leader>ds", function()
+--   require("fzf-lua").diagnostics_workspace({
+--     severity_only = 1 })
+-- end, opts)
+--
+-- map("n", "gr", require("fzf-lua").lsp_references, opts)
+-- map("n", "gR", require("fzf-lua").lsp_references, opts)
+-- map("n", "<leader>fs", require("fzf-lua").lsp_document_symbols, opts)
+-- map("n", "<leader>i", require("fzf-lua").lsp_implementations, opts)
+--
+-- map("n", "T", require("fzf-lua").buffers, { noremap = true, silent = true, desc = "open buffers" })
+--
+-- -- override nvchad
+-- map("n", "<leader>ff", require("fzf-lua").files, opts)
+-- map("n", "<leader>fw", require("fzf-lua").live_grep, opts)
+-- map("n", "<leader>gt", require("fzf-lua").git_status, opts)
+-- map("n", "<leader>fo", require("fzf-lua").oldfiles, opts)
+-- map("n", "<leader>qo", require("fzf-lua").quickfix, opts)
+-- map("n", "<leader>qO", require("fzf-lua").lgrep_quickfix, opts)
+-- map("n", "<leader>ca", require("fzf-lua").lsp_code_actions, opts)
+-- map("n", "<leader>?", require("fzf-lua").builtin, opts)
