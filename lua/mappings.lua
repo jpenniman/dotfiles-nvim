@@ -5,6 +5,8 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- require("custom-plugins.loadfromfolder").require_all("custom-mappings", map, opts)
+
 -- require("custom-mappings.mappings_telescope")(map, opts)
 require("custom-mappings.mappings-fzflua")(map, opts)
 require("custom-mappings.mappings-lsp")(map, opts)
