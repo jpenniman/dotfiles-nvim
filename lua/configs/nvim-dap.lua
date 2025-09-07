@@ -24,16 +24,18 @@ dap.configurations.cs = {
 
 local map = vim.keymap.set
 
-local opts = { noremap = true, silent = true }
 
-map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", opts)
-map("n", "<F6>", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", opts)
-map("n", "<F9>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
-map("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", opts)
-map("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", opts)
-map("n", "<F8>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
--- map("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
-map("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", opts)
-map("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", opts)
-map("n", "<leader>dt", "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>",
-  { noremap = true, silent = true, desc = 'debug nearest test' })
+map("n", "<F5>", function() dap.continue() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F8>", function() dap.step_out() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F9>", function() dap.toggle_breakpoint() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F10>", function() dap.step_over() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F11>", function() dap.step_into() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<leader>dr", function() dap.repl.open() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<leader>dl", function() dap.run_last() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+
+
+local neotest = require("neotest")
+map("n", "<leader>dt", function() neotest.run.run({ strategy = 'dap' }) end,
+  { noremap = true, silent = true, desc = "debug nearest test" })
+map("n", "<F6>", function() neotest.run.run({ strategy = 'dap' }) end,
+  { noremap = true, silent = true, desc = "debug nearest test" })
