@@ -6,6 +6,9 @@ local M = {}
 
 
 M.base46 = {
+
+  theme = "pastelbeans",
+
   hl_override = {
     Type = { bold = true, italic = false },
     ["@comment"] = { italic = true },
