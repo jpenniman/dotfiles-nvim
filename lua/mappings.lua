@@ -5,12 +5,12 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- require("mappings_telescope")(map, opts)
-require("mappings-fzflua")(map, opts)
-require("mappings-lsp")(map, opts)
-require("mappings-dap")(map, opts)
-require("mappings-neotest")(map, opts)
-require("mappings-ramboe-utils")(map, opts)
+-- require("custom-mappings.mappings_telescope")(map, opts)
+require("custom-mappings.mappings-fzflua")(map, opts)
+require("custom-mappings.mappings-lsp")(map, opts)
+require("custom-mappings.mappings-dap")(map, opts)
+require("custom-mappings.mappings-neotest")(map, opts)
+require("custom-mappings.mappings-ramboe-utils")(map, opts)
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
