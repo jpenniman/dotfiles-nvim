@@ -12,6 +12,8 @@ function HighlightCSharpMethod()
   vim.api.nvim_input "V"
 end
 
+vim.api.nvim_create_user_command("HighlightCSharpMethod", HighlightCSharpMethod, {})
+
 -- close other buffers
 function CloseOtherBuffers()
   local current_buf = vim.api.nvim_get_current_buf()
