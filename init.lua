@@ -14,18 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "configs.lazy"
 
 -- load plugins
-
 require("lazy").setup({
   {
     "NvChad/NvChad",
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
-    config = function()
-      require "options"
-    end,
   },
-
   { import = "plugins" },
 }, lazy_config)
 
@@ -33,19 +28,16 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-require "nvchad.autocmds"
+require "options"
+require "autocmds"
 
 vim.schedule(function()
   require "mappings"
-  require "options"
 end)
-
 
 -- require("custom-config.gen-nvim")
 -- require("custom-plugins.clemens-tree")
 -- require("custom-plugins.gen.init")
-
---[[ load plugins with configuration ]]
 
 require("custom-config.oil-config")
 require("custom-config.folding")
@@ -59,21 +51,3 @@ require("custom-config.fzf-lua")
 require("Comment").setup()
 require("git-conflict")
 require("dap-scope-walker").setup()
-
--- wtf is this?
--- do
---   local sev      = vim.diagnostic.severity
---   sev[sev.ERROR] = sev[sev.ERROR] or "ERROR"
---   sev[sev.WARN]  = sev[sev.WARN] or "WARN"
---   sev[sev.INFO]  = sev[sev.INFO] or "INFO"
---   sev[sev.HINT]  = sev[sev.HINT] or "HINT"
--- end
-
-
-
--- enable treesitter for razor files
--- vim.filetype.add { extension = { razor = "razor" } }
--- vim.treesitter.language.register("html", "razor") -- use HTML TS for `:set ft=razor`
-
-vim.g.dotnet_errors_only = true
-vim.g.dotnet_show_project_file = false
