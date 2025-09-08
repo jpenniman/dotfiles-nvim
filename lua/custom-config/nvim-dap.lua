@@ -22,12 +22,10 @@ dap.configurations.cs = {
   },
 }
 
-local map, opts = vim.keymap.set, { noremap = true, silent = true }
-
-map("n", "<F5>", function() dap.continue() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<F8>", function() dap.step_out() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<F9>", function() dap.toggle_breakpoint() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<F10>", function() dap.step_over() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<F11>", function() dap.step_into() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<leader>dr", function() dap.repl.open() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
-map("n", "<leader>dl", function() dap.run_last() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<F5>", dap.continue, "DAP: Continue/Start")
+map("n", "<F9>", dap.toggle_breakpoint, "DAP: Toggle breakpoint")
+map("n", "<F10>", dap.step_over, "DAP: Step over")
+map("n", "<F11>", dap.step_into, "DAP: Step into")
+map("n", "<F8>", dap.step_out, "DAP: Step out")
+map("n", "<leader>dr", dap.repl.open, "DAP: REPL open")
+map("n", "<leader>dl", dap.run_last, "DAP: Run last")

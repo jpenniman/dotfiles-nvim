@@ -2,13 +2,8 @@ require "nvchad.mappings"
 
 -- add yours here
 
--- local map = vim.keymap.set
--- local opts = { noremap = true, silent = true }
-
-
 -- override nvchad.mappings here
-require("custom-mappings.mappings-fzflua")(map, opts)
--- require("custom-mappings.mappings-lsp")(map, opts)
+require("custom-mappings.mappings-fzflua")
 require("custom-mappings.mappings-lsp")
 
 map("n", ";", ":",  "CMD enter command mode" )

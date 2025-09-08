@@ -54,26 +54,13 @@ dapui.setup({
   },
 })
 
-local map, opts = vim.keymap.set, { noremap = true, silent = true }
 
-map("n", "<leader>du", function() dapui.toggle() end, { noremap = true, silent = true, desc = "Toggle DAP UI" })
+map("n", "<leader>du", dapui.toggle, "DAP UI toggle")
 
-map({ "n", "v" }, "<leader>dw", function() require("dapui").eval(nil, { enter = true }) end,
-  { noremap = true, silent = true, desc = "Add word under cursor to Watches" })
-
-map({ "n", "v" }, "Q", function() require("dapui").eval() end,
-  {
-    noremap = true,
-    silent = true,
-    desc =
-    "Hover/eval a single value (opens a tiny window instead of expanding the full object) "
-  })
-
-
+map({ "n", "v" }, "<leader>dw", function() dapui.eval(nil, { enter = true }) end, "DAP Add word under cursor to Watches")
+map({ "n", "v" }, "Q", function() dapui.eval() end, "DAP Peek")
 
 local neotest = require("neotest")
 
-map("n", "<leader>dt", function() neotest.run.run({ strategy = 'dap' }) end,
-  { noremap = true, silent = true, desc = "debug nearest test" })
-map("n", "<F6>", function() neotest.run.run({ strategy = 'dap' }) end,
-  { noremap = true, silent = true, desc = "debug nearest test" })
+map("n", "<leader>dt", function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test")
+map("n", "<F6>", function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test")
