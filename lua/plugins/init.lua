@@ -169,9 +169,9 @@ return {
     dependencies = {
       "rcarriga/nvim-dap-ui",
     },
-    config = function()
-      require "custom-config.nvim-dap"
-    end,
+    -- config = function()
+    --   require "custom-config.nvim-dap"
+    -- end,
     event = "VeryLazy",
   },
   { "nvim-neotest/nvim-nio" },
@@ -181,9 +181,9 @@ return {
     dependencies = {
       "mfussenegger/nvim-dap",
     },
-    config = function()
-      require "custom-config.nvim-dap-ui"
-    end,
+    -- config = function()
+    --   require "custom-config.nvim-dap-ui"
+    -- end,
   },
   {
     'stevearc/oil.nvim',

@@ -31,23 +31,16 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "autocmds"
 
+require("custom-config.ramboe-utils")
+
 vim.schedule(function()
   require "mappings"
 end)
-
--- todo: put into ramboe utils
-_G.map = function(mode, lhs, rhs, opts)
-  if type(opts) == "string" then
-    opts = { desc = opts }
-  end
-  return vim.keymap.set(mode, lhs, rhs, opts)
-end
 
 -- require("custom-config.gen-nvim")
 -- require("custom-plugins.clemens-tree")
 -- require("custom-plugins.gen.init")
 
-require("custom-config.ramboe-utils")
 require("custom-config.oil-config")
 require("custom-config.folding")
 require("custom-config.luasnip")
@@ -56,5 +49,7 @@ require("custom-config.neotest")
 require("custom-config.tiny-inline-diagnostic")
 require("custom-config.fzf-lua")
 require("custom-config.comment")
+require("custom-config.nvim-dap")
+require("custom-config.nvim-dap-ui")
 
 require("git-conflict")
