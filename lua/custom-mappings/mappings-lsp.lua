@@ -1,17 +1,13 @@
 -- roslyn bindings
-
-local function setup(map, opts)
-  map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  map("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  map("n", "<leader>ra", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  map("v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-
-  map("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-end
-
-return setup
+map("n", "K", vim.lsp.buf.hover, "LSP Hover")
+map("n", "gi", vim.lsp.buf.implementation, "LSP Go to Implementation")
+map("n", "<C-k>", vim.lsp.buf.signature_help, "LSP Signature help")
+map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "LSP Workspace add")
+map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "LSP Workspace remove")
+map("n", "<leader>wl", function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, "WS list")
+map("n", "<leader>ra", vim.lsp.buf.rename, "LSP Rename")
+map("n", "<leader>ca", vim.lsp.buf.code_action, "LSP Code action")
+map("v", "<leader>ca", vim.lsp.buf.code_action, "LSP Code action")
+map("n", "<F12>", vim.lsp.buf.definition, "LSP Definition")

@@ -51,3 +51,10 @@ require("custom-config.comment")
 
 require("git-conflict")
 
+
+_G.map = function(mode, lhs, rhs, opts)
+  if type(opts) == "string" then
+    opts = { desc = opts }
+  end
+  return vim.keymap.set(mode, lhs, rhs, opts)
+end
