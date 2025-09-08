@@ -47,8 +47,7 @@ require("custom-config.neotest")
 require("custom-config.tiny-inline-diagnostic")
 require("custom-config.fzf-lua")
 require("custom-config.ramboe-utils")
+require("custom-config.comment")
 
-require("Comment").setup()
 require("git-conflict")
 
--- ramboe

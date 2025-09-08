@@ -186,4 +186,8 @@ require("oil").setup(opts)
 vim.api.nvim_command('Oil')                                            -- Open Oil file tree on startup
 vim.api.nvim_command('autocmd FileType * setlocal formatoptions-=cro') -- prevent from proceeding with comment
 
+local map = vim.keymap.set
+-- Oil.nvim
+map("n", "<A-a>", "<cmd>Oil<CR>", {})
+
 return {}
