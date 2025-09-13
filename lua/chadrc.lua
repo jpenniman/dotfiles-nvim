@@ -7,7 +7,7 @@ local M = {}
 
 M.base46 = {
 
-  theme = "pastelbeans",
+  theme = "chadracula-evondev",
 
   hl_override = {
     Type = { bold = true, italic = false },
