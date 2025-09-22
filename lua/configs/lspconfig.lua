@@ -5,13 +5,32 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "ansiblels", "eslint", "jsonls", "ts_ls" }
+local servers = { "html", "cssls", "ansiblels", "eslint", "jsonls", "ts_ls","yamlls" }
 
 -- lsps with default config
 require("nvchad.configs.lspconfig").defaults()
 vim.lsp.enable(servers)
 
 lspconfig.vls.setup {}
+
+-- vim.lsp.config('azure_pipelines_ls', {
+--   -- other configuration
+--   settings = {
+--       yaml = {
+--           schemas = {
+--               ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = {
+--                   -- "/azure-pipeline*.y*l",
+--                   "/azure-cli*.y*l",
+--                   "/*.azure*",
+--                   "Azure-Pipelines/**/*.y*l",
+--                   "Pipelines/*.y*l",
+--               },
+--           },
+--       },
+--   },
+-- })
+
+-- vim.lsp.enable('azure_pipelines_ls')
 
 -- bicep LSP
 vim.cmd([[ autocmd BufNewFile,BufRead *.bicep set filetype=bicep ]])

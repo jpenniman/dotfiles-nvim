@@ -88,7 +88,8 @@ return {
         "csharpier",
         "prettier",
         "json-lsp",
-        
+        "yaml-language-server",
+
         -- for some reason those have to be installed explicitely with MasonInstall
         "roslyn",
         "rzls",
@@ -109,7 +110,8 @@ return {
         "css",
         "c_sharp",
         "bicep",
-        "razor"
+        "razor",
+        "yaml"
       },
     },
   },
