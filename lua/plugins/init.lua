@@ -75,9 +75,6 @@ return {
       },
       ensure_installed = {
         "lua-language-server",
-        -- "csharp-language-server",
-        -- "omnisharp",
-        "rust-analyzer",
         "xmlformatter",
         "stylua",
         "bicep-lsp",

@@ -1,31 +1,24 @@
 -- !!! https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-require("nvchad.configs.lspconfig").defaults()
-
-local servers = { "html", "cssls", "ansiblels", "eslint", "jsonls", "ts_ls", "yamlls" }
+local servers = { "html", "cssls", "ansiblels", "eslint", "jsonls", "ts_ls", "yamlls", "dockerls" }
 
 -- lsps with default config
 require("nvchad.configs.lspconfig").defaults()
 vim.lsp.enable(servers)
 
--- keep filetype detection
-vim.cmd([[ autocmd BufNewFile,BufRead *.bicep set filetype=bicep ]])
+-- BICEP
+vim.filetype.add({ extension = { bicep = "bicep" } }) -- filetype detection because nvim does not know .bicep natively
 
--- path to the DLL
-local bicep_lsp_bin =
-"/home/ramboe/.local/share/nvim/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll"
+local bicep_mason_path = vim.fn.stdpath("data") ..
+    "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll"
 
 vim.lsp.config("bicep", {
-  cmd = { "dotnet", bicep_lsp_bin },
+  cmd = { "dotnet", bicep_mason_path },
   filetypes = { "bicep" },
 })
-
 vim.lsp.enable("bicep")
+-- END BICEP
 
-vim.lsp.config("dockerls", {})
-vim.lsp.enable("dockerls")
-
-vim.lsp.config("roslyn", {})
-
+vim.lsp.config("roslyn", {}) -- no vim.lsp.enable() necessary here
 
 -- IMPORTANT: vim diagnostic configuration AFTER LSPs are loaded
 vim.diagnostic.config(
