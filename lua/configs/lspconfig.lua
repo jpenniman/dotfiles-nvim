@@ -6,7 +6,7 @@ require("nvchad.configs.lspconfig").defaults()
 vim.lsp.enable(servers)
 
 -- BICEP
-vim.filetype.add({ extension = { bicep = "bicep" } }) -- filetype detection because nvim does not know .bicep natively
+vim.filetype.add({ extension = { ramboefile = "bicep" } }) -- DEMO map .ramboefile to .bicep so it triggerd the bicep-lsp
 
 local bicep_mason_path = vim.fn.stdpath("data") ..
     "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll"
@@ -15,6 +15,7 @@ vim.lsp.config("bicep", {
   cmd = { "dotnet", bicep_mason_path },
   filetypes = { "bicep" },
 })
+
 vim.lsp.enable("bicep")
 -- END BICEP
 
