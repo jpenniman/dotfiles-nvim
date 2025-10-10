@@ -14,12 +14,20 @@ dap.adapters.coreclr = netcoredbg_adapter    -- needed for unit test debugging
 dap.configurations.cs = {
   {
     type = "coreclr",
-    name = "launch - netcoredbg",
+    name = "LAUNCH directly from nvim",
     request = "launch",
     program = function()
       return require("dap-dll-autopicker").build_dll_path()
     end
   },
+  -- {
+  --   type = "coreclr",
+  --   name = "ATTACH to running app in dedicated terminal",
+  --   request = "attach",
+  --   processId = function()
+  --     return require("dap.utils").pick_process()
+  --   end,
+  -- }
 }
 
 map("n", "<F5>", dap.continue, "DAP: Continue/Start")
