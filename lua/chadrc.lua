@@ -1,9 +1,9 @@
--- This file  needs to have same structure as nvconfig.lua
--- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
+-- This file needs to have same structure as nvconfig.lua 
+-- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
+-- Please read that file to know all available options :( 
 
 ---@type ChadrcConfig
 local M = {}
-
 
 M.base46 = {
 
@@ -14,10 +14,8 @@ M.base46 = {
     ["@comment"] = { italic = true },
 
     --- https://neovim.io/doc/user/treesitter.html#treesitter-highlight-groups
-    ["@function"] = { bold = true, italic = true },
-    ["@function.builtin"] = { bold = true },
-    ["@function.call"] = { bold = true },
     ["@keyword"] = { italic = true },
+    ["@function.method"] = { italic = true },
     ["@function.method.call"] = { bold = true }
   }
 }
