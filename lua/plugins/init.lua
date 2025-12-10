@@ -9,12 +9,10 @@ return {
     ---@type RoslynNvimConfig
     ft = { "cs", "razor" },
     lazy = false,
+    --  https://github.com/tris203/rzls.nvim?tab=readme-ov-file#composing-the-command-for-roslyn
     config = function()
-      -- local mason_registry = require("mason-registry")
-
-      -- local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
-
-      local rzls_path = vim.fn.expand("~/.local/share/nvim/mason/packages/roslyn/libexec/.razorExtension")
+      local mason_root = require("mason.settings").current.install_root_dir
+      local rzls_path = vim.fn.expand(mason_root .. "/packages/roslyn/libexec/.razorExtension")
 
       local cmd = {
         "roslyn",
@@ -23,25 +21,13 @@ return {
         "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
         "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
         "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
-        "--extension",
-
-        vim.fs.joinpath(rzls_path, "Microsoft.VisualStudioCode.RazorExtension.dll"),
+        "--extension=" .. vim.fs.joinpath(rzls_path, "Microsoft.VisualStudioCode.RazorExtension.dll"),
       }
 
       vim.lsp.config("roslyn", {
         cmd = cmd,
       })
-      vim.lsp.enable("roslyn")
-    end,
-    init = function()
-      -- We add the Razor file types before the plugin loads.
-      vim.filetype.add({
-        extension = {
-          razor = "razor",
-          cshtml = "cshtml",
-        },
-      })
-    end,
+    end
   },
   {
     "ibhagwan/fzf-lua",
@@ -100,7 +86,6 @@ return {
 
         -- for some reason those have to be installed explicitely with MasonInstall
         "roslyn",
-        -- "rzls",
         "netcoredbg"
       },
     },
