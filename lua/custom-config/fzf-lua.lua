@@ -9,6 +9,13 @@ require("fzf-lua").setup({
   },
 
   -- use exact string matching, but only for the files picker
+
+  grep_curbuf = {
+    fzf_opts = {
+      ['--exact'] = '',
+      ['--no-sort'] = '',
+    }
+  },
   files = {
     fzf_opts = {
       ['--exact'] = '',

@@ -19,7 +19,12 @@ vim.lsp.config("bicep", {
 vim.lsp.enable("bicep")
 -- END BICEP
 
-vim.lsp.config("roslyn", {}) -- no vim.lsp.enable() necessary here
+vim.lsp.config("roslyn", { })
+
+-- An example nvim-lspconfig capabilities setting
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+vim.lsp.enable("markdown_oxide")
 
 -- IMPORTANT: vim diagnostic configuration AFTER LSPs are loaded
 vim.diagnostic.config(

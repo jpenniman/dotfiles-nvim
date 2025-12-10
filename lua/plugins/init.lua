@@ -7,28 +7,38 @@ return {
     "seblyng/roslyn.nvim",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    -- ft = { "cs", "razor" },
-    opts = {
-      -- your configuration comes here; leave empty for default settings
-    },
-    dependencies = {
-      {
-        -- By loading as a dependencies, we ensure that we are available to set
-        -- the handlers for Roslyn.
-        "tris203/rzls.nvim",
-        config = true,
-      },
-    },
+    ft = { "cs", "razor" },
     lazy = false,
     config = function()
-      require("configs.rzls").configure()
+      -- local mason_registry = require("mason-registry")
+
+      -- local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
+
+      local rzls_path = vim.fn.expand("~/.local/share/nvim/mason/packages/roslyn/libexec/.razorExtension")
+
+      local cmd = {
+        "roslyn",
+        "--stdio",
+        "--logLevel=Information",
+        "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+        "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+        "--razorDesignTimePath=" .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+        "--extension",
+
+        vim.fs.joinpath(rzls_path, "Microsoft.VisualStudioCode.RazorExtension.dll"),
+      }
+
+      vim.lsp.config("roslyn", {
+        cmd = cmd,
+      })
+      vim.lsp.enable("roslyn")
     end,
     init = function()
       -- We add the Razor file types before the plugin loads.
       vim.filetype.add({
         extension = {
           razor = "razor",
-          cshtml = "razor",
+          cshtml = "cshtml",
         },
       })
     end,
@@ -71,7 +81,7 @@ return {
     opts = {
       registries = {
         "github:mason-org/mason-registry",
-        "github:Crashdummyy/mason-registry",
+        "github:crashdummyy/mason-registry",
       },
       ensure_installed = {
         "lua-language-server",
@@ -86,10 +96,11 @@ return {
         "prettier",
         "json-lsp",
         "yaml-language-server",
+        "markdown-oxide",
 
         -- for some reason those have to be installed explicitely with MasonInstall
         "roslyn",
-        "rzls",
+        -- "rzls",
         "netcoredbg"
       },
     },
