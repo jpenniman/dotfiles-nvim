@@ -84,7 +84,8 @@ return {
         "c_sharp",
         "bicep",
         "razor",
-        "yaml"
+        "yaml",
+        "caddy"
       },
     },
   },

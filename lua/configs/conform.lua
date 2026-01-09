@@ -5,7 +5,8 @@ local opts = {
     css = { "prettier" },
     html = { "prettier" },
     csproj = { "xmlformat" },
-    xml = { "xmlformat" }
+    xml = { "xmlformat" },
+    caddy = { 'caddy' },
   },
   formatters = {
     xmlformat = {
@@ -19,6 +20,11 @@ local opts = {
         "--write-stdout",
       },
       to_stdin = true,
+    },
+    caddy = {
+      command = 'caddy',
+      args = { 'fmt', '-' },
+      stdin = true,
     },
   },
   -- format_on_save = {

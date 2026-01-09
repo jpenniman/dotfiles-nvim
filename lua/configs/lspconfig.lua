@@ -19,6 +19,18 @@ vim.lsp.config("bicep", {
 vim.lsp.enable("bicep")
 -- END BICEP
 
+-- CADDY
+
+vim.filetype.add {
+  extension = {
+    caddy = 'caddy',
+  },
+  filename = {
+    Caddyfile = 'caddy',
+  },
+}
+
+
 -- ROSLYN (+razor support)
 local mason_root = require("mason.settings").current.install_root_dir
 
