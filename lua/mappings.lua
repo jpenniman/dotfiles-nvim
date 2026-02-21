@@ -22,3 +22,6 @@ map("n", "<S-Tab>", ":b#<CR>", opts)
 
 -- Show File in Tree
 map("n", "<leader>e", "<cmd>ShowFileInTree<CR>", opts)
+
+map("n", "<C-`>", "<cmd>below terminal<CR>")
+
