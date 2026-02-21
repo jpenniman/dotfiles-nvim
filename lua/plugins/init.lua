@@ -66,6 +66,7 @@ return {
         "docker-compose-language-service",
         "docker-language-server",
         "bash-language-server",
+        "editorconfig-checker",
 
         -- for some reason those have to be installed explicitely with MasonInstall
         "roslyn",
@@ -90,7 +91,8 @@ return {
         "yaml",
         "caddy",
         "dockerfile",
-        "bash"
+        "bash",
+        "editorconfig"
       },
     },
   },
