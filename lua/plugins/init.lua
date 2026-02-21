@@ -65,6 +65,7 @@ return {
         "markdown-oxide",
         "docker-compose-language-service",
         "docker-language-server",
+        "bash-language-server",
 
         -- for some reason those have to be installed explicitely with MasonInstall
         "roslyn",
@@ -88,7 +89,8 @@ return {
         "razor",
         "yaml",
         "caddy",
-        "dockerfile"
+        "dockerfile",
+        "bash"
       },
     },
   },
