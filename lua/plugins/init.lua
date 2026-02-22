@@ -7,7 +7,18 @@ return {
     "seblyng/roslyn.nvim",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    ft = { "cs", "razor" }
+    ft = { "cs", "razor" },
+    
+    opts = {
+    -- This is the key bit: enable Razor inside Roslyn (cohosting)
+      razor = {
+       language_server = {
+          cohosting_enabled = true,
+        },
+     },
+     -- Some builds expose a convenience switch; harmless if ignored
+      enableRazor = true,
+    }
   },
   {
     "ibhagwan/fzf-lua",

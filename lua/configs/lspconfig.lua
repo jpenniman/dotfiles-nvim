@@ -34,8 +34,12 @@ vim.filetype.add {
 -- ROSLYN (+razor support)
 local mason_root = require("mason.settings").current.install_root_dir
 
-vim.lsp.config("roslyn", {})
+vim.lsp.config("roslyn", {filetypes = { "cs", "razor", "cshtml" }})
 -- END ROSLYN
+
+vim.filetype.add({
+  extension = { cshtml = "razor", razor = "razor" },
+})
 
 -- An example nvim-lspconfig capabilities setting
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
